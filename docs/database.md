@@ -20,20 +20,21 @@
 
 ```mermaid
 classDiagram
-    class User {
-        UID
-        Master Key
-        Password
-        Salt
+    direction BT
+    class passwords {
+        text password
+        text site_name
+        datetime creation_date
+        text username
+        int uid
+        int pid
     }
-    
-    class Passwords {
-        UID
-        PID
-        Password
-        Name
-        Creation Date
+    class user {
+        text master_key
+        varchar(255) pwd
+        varchar(30) username
+        int uid
     }
-    
-    User --> Passwords
+
+    passwords  -->  user : uid
 ```
