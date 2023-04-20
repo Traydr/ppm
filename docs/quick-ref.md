@@ -12,10 +12,9 @@
 
 ```injectablephp
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
 
-    <body>
-    <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
-    </body>
+<h1> Title </h1>
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php") ?>
 ```
