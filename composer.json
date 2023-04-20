@@ -1,0 +1,7 @@
+{
+  "require": {
+    "ext-pdo": "*",
+    "ext-openssl": "*",
+    "ext-dom": "*"
+  }
+}
