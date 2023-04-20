@@ -30,8 +30,13 @@
 
 ## Deliverables
 
-1) Program performance report (PDF) containing: title page, UML diagrams, images of response window(
-   s) with various data (Print Screens), program fragments with comments, My Sql tables window
-   images - real-world connections (Print Screens );
+1) Program performance report (PDF) containing: 
+   1) Title page 
+   2) UML diagrams 
+   3) Images of response window(s): 
+      1) With data (Print Screens) 
+      2) Program fragments with comments 
+      3) My Sql tables window 
+      4) Images - real-world connections (Print Screens)
 2) PHP code
 3) MySQL db export
