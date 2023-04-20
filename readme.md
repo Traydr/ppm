@@ -7,7 +7,7 @@ A password manager written in PHP using MySQL.
 - PHP 8.2.4
 - PHP Composer
     - run `$ composer install`
-- MySQL Latest
+- MySQL 8.0.32
 
 ## Requirements
 
