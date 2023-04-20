@@ -1,11 +1,10 @@
-# Password manager in PHP
+# PPM
+
+A password manager written in PHP using MySQL.
 
 ## Prerequisites
 
 - PHP 8.2.4
-    - Edit PHP.ini
-        - Enable the open-ssl flag
-        - Enable PDO-MySQL flag
 - PHP Composer
     - run `$ composer install`
 - MySQL Latest
