@@ -31,7 +31,7 @@ If Intellij doesn't like a command
 1) restart IDE 
 2) restart computer (especially with path stuff)
 
-## Usefull links
+## Useful links
 
 - https://www.php.net/manual/en/index.php
 - https://www.php.net/manual/en/pdo.connections.php
