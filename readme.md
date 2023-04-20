@@ -2,7 +2,7 @@
   <img alt="PPM" src="media/android-chrome-192x192.png">
 </h1>
 <p align="center">
-    A password manager written in PHP and MySQL db.
+    A password manager written in PHP and MySQL.
 </p>
 
 ## Prerequisites
