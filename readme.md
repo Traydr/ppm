@@ -1,6 +1,9 @@
-# PPM
-
-A password manager written in PHP using MySQL.
+<h1 align="center">
+  <img alt="PPM" src="media/android-chrome-192x192.png">
+</h1>
+<p align="center">
+    A password manager written in PHP using MySQL.
+</p>
 
 ## Prerequisites
 
