@@ -10,9 +10,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
 if (isset($_POST['submit'])) {
     if (empty($_POST['password'])) {
         print_messages::printError("Empty Password");
-    } else if (empty($_POST['repeatPassword'])) {
+    } elseif (empty($_POST['repeatPassword'])) {
         print_messages::printError("Empty Repeated Password");
-    } else if ($_POST['repeatPassword'] !== $_POST['password']) {
+    } elseif ($_POST['repeatPassword'] !== $_POST['password']) {
         print_messages::printError("Passwords do not match");
     } else {
         $password = $_POST['password'];
@@ -55,11 +55,10 @@ function change_password($password): void {
         $conn = $db->getConnection();
         $stmt = $conn->prepare("UPDATE user SET master_key = :master, pwd = :pwd WHERE uid = :uid");
         $stmt->bindParam(":uid", $_SESSION['uid']);
-        $stmt->bindParam(":master",  $new_master_encrypted);
+        $stmt->bindParam(":master", $new_master_encrypted);
         $stmt->bindParam(":pwd", $new_password_hashed);
 
         $stmt->execute();
-
     } catch (PDOException $e) {
         print_messages::printError("Database Error");
     }
