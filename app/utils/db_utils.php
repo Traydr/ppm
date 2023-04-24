@@ -16,24 +16,27 @@ class db_utils {
      * @return bool True if username exists, false otherwise
      */
     public function usernamesExists(string $username): bool {
+        $exists = true;
         try {
             $stmt = $this->conn->prepare("SELECT * FROM user WHERE username = ?");
             $stmt->bindParam(1, $username);
             $stmt->execute();
 
-            if ($stmt->rowCount() > 0) {
-                unset($stmt);
-                unset($db);
-                return true;
-            } else {
-                unset($stmt);
-                unset($db);
-                return false;
+            if ($stmt->rowCount() == 0) {
+                $exists = false;
             }
         } catch (PDOException $e) {
             // Silently fail
             print_messages::printError("Database Error");
             die();
+        } finally {
+            unset($stmt);
+            return $exists;
         }
+    }
+
+    public function __destruct() {
+        unset($this->conn);
+        unset($this->db);
     }
 }
