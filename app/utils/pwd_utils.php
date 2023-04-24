@@ -43,7 +43,7 @@ class pwd_utils {
      * Creates a new master key
      * @return string Master Key
      */
-    public static function generate_master_key(): string{
+    public static function generate_master_key(): string {
         return base64_encode(openssl_random_pseudo_bytes(64));
     }
 }

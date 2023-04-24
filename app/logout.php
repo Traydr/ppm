@@ -11,4 +11,4 @@ session_destroy();
 print_messages::printInfo("Logging out!");
 header("Location: /");
 die();
-?>
+

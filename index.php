@@ -7,4 +7,4 @@ if (isset($_SESSION['uid'])) {
     echo '<h1 class="text-center">You should log in or register to access the app!</h1>';
 }
 ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php");

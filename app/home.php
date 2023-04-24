@@ -16,7 +16,7 @@ if (isset($_POST['update'])) {
     $password = pwd_utils::encrypt_password($_POST['password']);
 
     update_password($pid, $site, $username, $password);
-} else if (isset($_POST['delete'])) {
+} elseif (isset($_POST['delete'])) {
     $pid = $_POST['pid'];
     delete_password($pid);
 }
@@ -48,7 +48,6 @@ function load_passwords(): void {
             $creation_date = $row['creation_date'];
             create_password_form($pid, $site, $username, $password, $creation_date);
         }
-
     } catch (PDOException $e) {
         print_messages::printError("Database Error");
     }

@@ -23,7 +23,7 @@ class password_generator {
     public function generate(): string {
         if ($this->passwordLength <= 0) {
             throw new Exception("Password length cannot be less than 1");
-        } else if ($this->passwordLength > 128) {
+        } elseif ($this->passwordLength > 128) {
             throw new Exception("Password length cannot be more than 128");
         }
 

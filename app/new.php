@@ -12,9 +12,9 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
 if (isset($_POST["submit"])) {
     if (empty($_POST["site"])) {
         print_messages::printError("Missing site name");
-    } else if (empty($_POST["username"])) {
+    } elseif (empty($_POST["username"])) {
         print_messages::printError("Missing username");
-    } else if (empty($_POST["password"])) {
+    } elseif (empty($_POST["password"])) {
         print_messages::printError("Missing password");
     } else {
         create_new_password($_POST["site"], $_POST["username"], $_POST["password"]);

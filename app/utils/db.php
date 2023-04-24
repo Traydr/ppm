@@ -22,7 +22,7 @@ class db {
                 PDO::ATTR_PERSISTENT => true
             ));
         } catch (PDOException $pe) {
-            die ("Could not connect to the database $this->dbname :" . $pe->getMessage());
+            die("Could not connect to the database $this->dbname :" . $pe->getMessage());
         }
     }
 

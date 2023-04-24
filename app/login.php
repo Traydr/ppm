@@ -10,7 +10,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
 if (isset($_POST['submit'])) {
     if (empty($_POST['username'])) {
         print_messages::printError("Empty Username");
-    } else if (empty($_POST['password'])) {
+    } elseif (empty($_POST['password'])) {
         print_messages::printError("Empty Password");
     } else {
         $name = $_POST['username'];
@@ -61,7 +61,6 @@ function login_user(string $username, string $password): void {
         $_SESSION['username'] = $username;
 
         print_messages::printInfo("Login Successful");
-
     } catch (PDOException $e) {
         // Silently fail
         print_messages::printError("Database Error");

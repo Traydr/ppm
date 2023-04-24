@@ -20,16 +20,16 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repe
 
 if (isset($_POST['submit'])) {
     if (empty($_POST['username'])) {
-        print_messages::printError("Empty Username");;
-    } else if (empty($_POST['password'])) {
+        print_messages::printError("Empty Username");
+    } elseif (empty($_POST['password'])) {
         print_messages::printError("Empty Password");
-    } else if (empty($_POST['repeatPassword'])) {
+    } elseif (empty($_POST['repeatPassword'])) {
         print_messages::printError("Empty Repeated Password");
-    } else if ($repeatPassword !== $password) {
+    } elseif ($repeatPassword !== $password) {
         print_messages::printError("Passwords do not match");
-    } else if (strlen($name) > 30) {
+    } elseif (strlen($name) > 30) {
         print_messages::printError("Username too long");
-    } else if ($db_utils->usernamesExists($name)) {
+    } elseif ($db_utils->usernamesExists($name)) {
         print_messages::printError("Username already exists");
     } else {
         register_user($password, $name);

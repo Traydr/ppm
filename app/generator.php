@@ -34,7 +34,6 @@ if (!isset($_POST['lowercase'])) {
 
 if (isset($_POST['submit'])) {
     print ("<h2 class='text-center'>" . generatePassword($chars, $specialChars, $numbers, $uppercase, $lowercase) . "</h2>");
-
 }
 
 function generatePassword($chars, $specialChars, $numbers, $uppercase, $lowercase): string {
