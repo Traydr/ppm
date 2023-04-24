@@ -29,8 +29,9 @@ function isLoggedIn(): bool {
 <nav class="navbar sticky-top bg-body-tertiary mb-3">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand <?php isActive('/index.php'); ?>" href="/index.php">PHP Password
-                Manager</a>
+            <a class="navbar-brand <?php isActive('/index.php'); ?>" href="/index.php">
+                PHP Password Manager
+            </a>
         </div>
         <ul class="nav nav-tabs">
             <li class="nav-item">
@@ -45,7 +46,9 @@ function isLoggedIn(): bool {
                 <a class="nav-link <?php isActive('/app/generator.php'); ?>"
                    href="/app/generator.php">Generator</a>
             </li>
-            <?php if (isLoggedIn()) { include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar_change_password.php"); }?>
+            <?php if (isLoggedIn()) {
+                include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar_change_password.php");
+            }?>
         </ul>
         <ul class="nav nav-pills navbar-right">
             <?php if (isLoggedIn()) {
