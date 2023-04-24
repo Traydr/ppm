@@ -6,7 +6,6 @@
         <directory name="app" />
     </projectFiles>
     <enableExtensions>
-        <extension name="openssl"/>
         <extension name="pdo"/>
         <extension name="dom"/>
     </enableExtensions>
