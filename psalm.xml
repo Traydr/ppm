@@ -1,9 +1,11 @@
 <?xml version="1.0"?>
 <psalm
         skipChecksOnUnresolvableIncludes="true"
+        findUnusedCode="false"
 >
     <projectFiles>
         <directory name="app" />
+        <directory name="generic" />
     </projectFiles>
     <enableExtensions>
         <extension name="pdo"/>
