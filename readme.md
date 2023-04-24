@@ -36,7 +36,7 @@
    3) Images of response window(s): 
       1) With data (Print Screens) 
       2) Program fragments with comments 
-      3) My Sql tables window 
+      3) MySql table windows 
       4) Images - real-world connections (Print Screens)
 2) PHP code
 3) MySQL db export
