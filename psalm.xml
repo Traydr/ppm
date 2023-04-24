@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<psalm
+        skipChecksOnUnresolvableIncludes="true"
+>
+    <projectFiles>
+        <directory name="app" />
+    </projectFiles>
+    <enableExtensions>
+        <extension name="openssl"/>
+        <extension name="pdo"/>
+        <extension name="dom"/>
+    </enableExtensions>
+</psalm>
