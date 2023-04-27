@@ -112,6 +112,8 @@ function update_password(int $pid, string $site, string $username, string $passw
         $stmt->bindParam(":date", $current_time);
 
         $stmt->execute();
+        unset($stmt);
+        unset($db);
     } catch (PDOException $e) {
         print_messages::printError("Database Error");
     }
@@ -131,6 +133,8 @@ function delete_password(int $pid): void {
         $stmt->bindParam(":pid", $pid);
 
         $stmt->execute();
+        unset($stmt);
+        unset($db);
     } catch (PDOException $e) {
         print_messages::printError("Database Error");
     }

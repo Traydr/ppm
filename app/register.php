@@ -59,15 +59,13 @@ function register_user(string $password, string $name): void {
 
         // execute
         $stmt->execute();
+        unset($stmt);
+        unset($db);
     } catch (PDOException $e) {
         // Silently fail
         print_messages::printError("Database Error");
         die();
     }
-
-    unset($stmt);
-    unset($db);
-
     print_messages::printInfo("Registration Complete");
 }
 

@@ -40,12 +40,11 @@ function create_new_password(string $site, string $username, string $password): 
         $stmt->execute();
 
         print_messages::printInfo("Password created!");
+        unset($stmt);
+        unset($db);
     } catch (PDOException $e) {
         print_messages::printError("Database Error");
     }
-
-    unset($stmt);
-    unset($db);
 }
 
 ?>
