@@ -1,12 +1,12 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/header.php") ?>
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/navbar.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
 
-    <h1 class="text-center">All Your Passwords!</h1>
+<h1 class="text-center">All Your Passwords!</h1>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
 
 if (isset($_POST['update'])) {
     $pid = $_POST['pid'];
@@ -136,5 +136,4 @@ function delete_password(int $pid): void {
 }
 
 ?>
-
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php") ?>

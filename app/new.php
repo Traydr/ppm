@@ -1,13 +1,13 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/header.php") ?>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/navbar.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
 
     <h1 class="text-center">Add a new password!</h1>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
 
 if (isset($_POST["submit"])) {
     if (empty($_POST["site"])) {
@@ -77,4 +77,4 @@ function create_new_password(string $site, string $username, string $password): 
         </form>
     </div>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php") ?>
