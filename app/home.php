@@ -1,6 +1,5 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/header.php") ?>
-
-<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~". "/generic/navbar.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/navbar.php") ?>
 
     <h1 class="text-center">All Your Passwords!</h1>
 
@@ -23,6 +22,10 @@ if (isset($_POST['update'])) {
 
 load_passwords();
 
+/**
+ * Loads all of the passwords of the specific user
+ * @return void
+ */
 function load_passwords(): void {
     $uid = $_SESSION['uid'];
 
@@ -39,7 +42,6 @@ function load_passwords(): void {
             return;
         }
 
-
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pid = $row['pid'];
             $site = $row['site_name'];
@@ -53,6 +55,15 @@ function load_passwords(): void {
     }
 }
 
+/**
+ * Generates a form for a password that can be edited or deleted
+ * @param int $pid Password ID
+ * @param string $site Site or app name
+ * @param string $username Username for the password
+ * @param string $password Password
+ * @param string $creation_date Date the password was created or modified
+ * @return void
+ */
 function create_password_form(int $pid, string $site, string $username, string $password, string $creation_date): void {
     echo '<div class="container mb-5">
     <form role="form" method="post" id="passwordForm" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
@@ -77,6 +88,14 @@ function create_password_form(int $pid, string $site, string $username, string $
 </div>';
 }
 
+/**
+ * Updates an existing password in the database
+ * @param int $pid The password ID
+ * @param string $site The site or app name
+ * @param string $username The username for the password
+ * @param string $password The password
+ * @return void
+ */
 function update_password(int $pid, string $site, string $username, string $password): void {
     $current_time = date("Y-m-d H:i:s");
 
@@ -97,7 +116,12 @@ function update_password(int $pid, string $site, string $username, string $passw
     }
 }
 
-function delete_password($pid): void {
+/**
+ * Deletes a password from the database
+ * @param int $pid The password ID
+ * @return void
+ */
+function delete_password(int $pid): void {
     try {
         $db = new db();
         $conn = $db->getConnection();
@@ -112,6 +136,5 @@ function delete_password($pid): void {
 }
 
 ?>
-
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/footer.php") ?>
