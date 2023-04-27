@@ -1,11 +1,11 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/header.php") ?>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/navbar.php") ?>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/print_messages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/db.php");
+include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/pwd_utils.php");
 
 if (isset($_POST['submit'])) {
     if (empty($_POST['username'])) {
@@ -91,4 +91,4 @@ function login_user(string $username, string $password): void {
     </form>
 </div>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/footer.php") ?>

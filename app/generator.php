@@ -1,11 +1,11 @@
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/header.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/header.php") ?>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/navbar.php") ?>
     <h1 class="text-center">Password Generator</h1>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/generator/password_generator.php");
+include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/print_messages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/generator/password_generator.php");
 
 $chars = 20;
 if (isset($_POST['chars'])) {
@@ -103,4 +103,4 @@ function generatePassword(int $chars, bool $specialChars, bool $numbers, bool $u
         </form>
     </div>
 
-<?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/footer.php") ?>
+<?php include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/generic/footer.php") ?>

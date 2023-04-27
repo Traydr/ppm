@@ -1,5 +1,5 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
+include_once($_SERVER['DOCUMENT_ROOT'] ?? "~" . "/app/utils/db.php");
 
 class db_utils {
     private db $db;
