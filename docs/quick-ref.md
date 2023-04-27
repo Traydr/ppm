@@ -27,16 +27,16 @@ MySQL Workbench freezing on start server
 3) Go through the steps, server is now running again
 
 If Intellij doesn't like a command
-1) restart IDE 
+1) restart IDE
 2) restart computer (especially with path stuff)
 
 ## Useful links
 
-- https://www.php.net/manual/en/index.php
-- https://www.php.net/manual/en/pdo.connections.php
-- https://www.php.net/manual/en/pdo.prepared-statements.php
-- https://www.w3schools.com/php/php_mysql_connect.asp
-- https://www.w3schools.com/php/php_form_validation.asp
-- https://www.hostinger.com/tutorials/how-to-connect-php-to-mysql
-- https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a
-- https://getbootstrap.com/docs/5.3/utilities/colors/
+- <https://www.php.net/manual/en/index.php>
+- <https://www.php.net/manual/en/pdo.connections.php>
+- <https://www.php.net/manual/en/pdo.prepared-statements.php>
+- <https://www.w3schools.com/php/php_mysql_connect.asp>
+- <https://www.w3schools.com/php/php_form_validation.asp>
+- <https://www.hostinger.com/tutorials/how-to-connect-php-to-mysql>
+- <https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a>
+- <https://getbootstrap.com/docs/5.3/utilities/colors/>
