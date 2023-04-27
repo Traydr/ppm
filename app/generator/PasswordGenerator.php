@@ -1,6 +1,6 @@
 <?php
 
-class password_generator {
+class PasswordGenerator {
     private int $passwordLength;
     private bool $hasUpperCase;
     private bool $hasLowerCase;

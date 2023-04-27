@@ -1,12 +1,12 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/Database.php");
 
-class db_utils {
-    private db $db;
+class DatabaseUtils {
+    private Database $db;
     private PDO $conn;
 
     public function __construct() {
-        $this->db  = new db();
+        $this->db  = new Database();
         $this->conn = $this->db->getConnection();
     }
 
@@ -27,7 +27,7 @@ class db_utils {
             }
         } catch (PDOException $e) {
             // Silently fail
-            print_messages::printError("Database Error");
+            PrintMessages::printError("Database Error");
             die();
         } finally {
             unset($stmt);

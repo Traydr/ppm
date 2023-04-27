@@ -1,6 +1,6 @@
 <?php
 
-class print_messages {
+class PrintMessages {
     /**
      * Prints a success message
      * @param string $inner Message

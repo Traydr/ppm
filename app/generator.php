@@ -4,8 +4,8 @@
     <h1 class="text-center">Password Generator</h1>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/generator/password_generator.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PrintMessages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/generator/PasswordGenerator.php");
 
 $chars = 20;
 if (isset($_POST['chars'])) {
@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
  * @return string The generated password
  */
 function generatePassword(int $chars, bool $specialChars, bool $numbers, bool $uppercase, bool $lowercase): string {
-    $gen = new password_generator($chars, $numbers, $specialChars, $uppercase, $lowercase);
+    $gen = new PasswordGenerator($chars, $numbers, $specialChars, $uppercase, $lowercase);
     try {
         return $gen->generate();
     } catch (Exception $e) {

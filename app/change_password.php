@@ -3,29 +3,29 @@
 
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PrintMessages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/Database.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PwdUtils.php");
 
 if (isset($_POST['submit'])) {
     if (empty($_POST['password'])) {
-        print_messages::printError("Empty Password");
+        PrintMessages::printError("Empty Password");
     } elseif (empty($_POST['repeatPassword'])) {
-        print_messages::printError("Empty Repeated Password");
+        PrintMessages::printError("Empty Repeated Password");
     } elseif ($_POST['repeatPassword'] !== $_POST['password']) {
-        print_messages::printError("Passwords do not match");
+        PrintMessages::printError("Passwords do not match");
     } else {
         $password = $_POST['password'];
-        change_password($password);
+        changePassword($password);
     }
 }
 
-function change_password($password): void {
-    $new_master = pwd_utils::generate_master_key();
+function changePassword($password): void {
+    $new_master = PwdUtils::generateMasterKey();
     $passwords = array();
 
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("SELECT pid, password FROM passwords WHERE uid = :uid");
         $stmt->bindParam(":uid", $_SESSION['uid']);
@@ -34,24 +34,24 @@ function change_password($password): void {
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
             $pid = $row['pid'];
-            $old_password = pwd_utils::decrypt_password($row['password']);
+            $old_password = PwdUtils::decryptPassword($row['password']);
             $passwords[$pid] = $old_password;
         }
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 
     $_SESSION['master_key'] = $new_master;
 
     foreach ($passwords as $pid => $old_password) {
-        update_password($pid, $old_password);
+        updatePassword($pid, $old_password);
     }
 
     try {
-        $new_master_encrypted = pwd_utils::encrypt_master($new_master, $password);
+        $new_master_encrypted = PwdUtils::encryptMaster($new_master, $password);
         $new_password_hashed = password_hash($password, PASSWORD_DEFAULT);
 
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("UPDATE user SET master_key = :master, pwd = :pwd WHERE uid = :uid");
         $stmt->bindParam(":uid", $_SESSION['uid']);
@@ -60,7 +60,7 @@ function change_password($password): void {
 
         $stmt->execute();
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 }
 
@@ -70,12 +70,12 @@ function change_password($password): void {
  * @param string $password Plain-text Password
  * @return void
  */
-function update_password(string $pid, string $password): void {
+function updatePassword(string $pid, string $password): void {
     $current_time = date("Y-m-d H:i:s");
-    $encrypted_password = pwd_utils::encrypt_password($password);
+    $encrypted_password = PwdUtils::encryptPassword($password);
 
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("UPDATE passwords SET password = :pwd, creation_date = :date WHERE uid = :uid AND pid = :pid");
         $stmt->bindParam(":uid", $_SESSION['uid']);
@@ -85,7 +85,7 @@ function update_password(string $pid, string $password): void {
 
         $stmt->execute();
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 }
 

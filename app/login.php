@@ -3,19 +3,19 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PrintMessages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/Database.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PwdUtils.php");
 
 if (isset($_POST['submit'])) {
     if (empty($_POST['username'])) {
-        print_messages::printError("Empty Username");
+        PrintMessages::printError("Empty Username");
     } elseif (empty($_POST['password'])) {
-        print_messages::printError("Empty Password");
+        PrintMessages::printError("Empty Password");
     } else {
         $name = $_POST['username'];
         $password = $_POST['password'];
-        login_user($name, $password);
+        loginUser($name, $password);
         header("Location: /app/home.php");
     }
 }
@@ -26,16 +26,16 @@ if (isset($_POST['submit'])) {
  * @param string $password Plain text password of the user
  * @return void
  */
-function login_user(string $username, string $password): void {
+function loginUser(string $username, string $password): void {
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("SELECT * FROM user WHERE username = ? LIMIT 1;");
         $stmt->bindParam(1, $username);
 
         $stmt->execute();
         if ($stmt->rowCount() != 1) {
-            print_messages::printError("Invalid Username Or Password");
+            PrintMessages::printError("Invalid Username Or Password");
             return;
         }
 
@@ -47,23 +47,23 @@ function login_user(string $username, string $password): void {
         $username = $result['username'];
 
         if (!password_verify($password, $pwd)) {
-            print_messages::printError("Invalid Username Or Password");
+            PrintMessages::printError("Invalid Username Or Password");
             return;
         }
 
         // Apparently sessions are actually pretty secure already, though
         // session_regenerate_id() should be called after each login attempt
         session_regenerate_id();
-        $master_key_decrypted = pwd_utils::decrypt_master($master_key_result, $password);
+        $master_key_decrypted = PwdUtils::decryptMaster($master_key_result, $password);
 
         $_SESSION['uid'] = $uid;
         $_SESSION['master_key'] = $master_key_decrypted;
         $_SESSION['username'] = $username;
 
-        print_messages::printInfo("Login Successful");
+        PrintMessages::printInfo("Login Successful");
     } catch (PDOException $e) {
         // Silently fail
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
         die();
     }
 

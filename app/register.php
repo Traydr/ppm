@@ -3,13 +3,13 @@
 <?php include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar.php") ?>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db_utils.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PrintMessages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/Database.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/DatabaseUtils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PwdUtils.php");
 
 
-$db_utils = new db_utils();
+$db_utils = new DatabaseUtils();
 
 if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repeatPassword'])) {
     $name = $_POST['username'];
@@ -20,19 +20,19 @@ if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repe
 
 if (isset($_POST['submit'])) {
     if (empty($_POST['username'])) {
-        print_messages::printError("Empty Username");
+        PrintMessages::printError("Empty Username");
     } elseif (empty($_POST['password'])) {
-        print_messages::printError("Empty Password");
+        PrintMessages::printError("Empty Password");
     } elseif (empty($_POST['repeatPassword'])) {
-        print_messages::printError("Empty Repeated Password");
+        PrintMessages::printError("Empty Repeated Password");
     } elseif ($repeatPassword !== $password) {
-        print_messages::printError("Passwords do not match");
+        PrintMessages::printError("Passwords do not match");
     } elseif (strlen($name) > 30) {
-        print_messages::printError("Username too long");
+        PrintMessages::printError("Username too long");
     } elseif ($db_utils->usernamesExists($name)) {
-        print_messages::printError("Username already exists");
+        PrintMessages::printError("Username already exists");
     } else {
-        register_user($password, $name);
+        registerUser($password, $name);
     }
 }
 
@@ -42,15 +42,15 @@ if (isset($_POST['submit'])) {
  * @param string $name Username
  * @return void
  */
-function register_user(string $password, string $name): void {
+function registerUser(string $password, string $name): void {
     // DB vars
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $master_key_encode = pwd_utils::generate_master_key();
-    $master_key = pwd_utils::encrypt_master($master_key_encode, $password);
+    $master_key_encode = PwdUtils::generateMasterKey();
+    $master_key = PwdUtils::encryptMaster($master_key_encode, $password);
 
     // Database stuff
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("INSERT INTO user (username, pwd, master_key) VALUES (:name, :pwd, :master)");
         $stmt->bindParam(":name", $name);
@@ -63,10 +63,10 @@ function register_user(string $password, string $name): void {
         unset($db);
     } catch (PDOException $e) {
         // Silently fail
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
         die();
     }
-    print_messages::printInfo("Registration Complete");
+    PrintMessages::printInfo("Registration Complete");
 }
 
 ?>

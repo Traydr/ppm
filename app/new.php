@@ -5,30 +5,30 @@
     <h1 class="text-center">Add a new password!</h1>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PrintMessages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/Database.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PwdUtils.php");
 
 if (isset($_POST["submit"])) {
     if (empty($_POST["site"])) {
-        print_messages::printError("Missing site name");
+        PrintMessages::printError("Missing site name");
     } elseif (empty($_POST["username"])) {
-        print_messages::printError("Missing username");
+        PrintMessages::printError("Missing username");
     } elseif (empty($_POST["password"])) {
-        print_messages::printError("Missing password");
+        PrintMessages::printError("Missing password");
     } else {
-        create_new_password($_POST["site"], $_POST["username"], $_POST["password"]);
+        createNewPassword($_POST["site"], $_POST["username"], $_POST["password"]);
         unset($_POST["site"]);
         unset($_POST["username"]);
         unset($_POST["password"]);
     }
 }
 
-function create_new_password(string $site, string $username, string $password): void {
+function createNewPassword(string $site, string $username, string $password): void {
     $current_time = date("Y-m-d H:i:s");
-    $encrypted_password = pwd_utils::encrypt_password($password);
+    $encrypted_password = PwdUtils::encryptPassword($password);
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("INSERT INTO passwords (uid, password, username, site_name, creation_date) VALUES (:uid, :pwd, :user, :site, :date)");
         $stmt->bindParam(':uid', $_SESSION['uid']);
@@ -39,11 +39,11 @@ function create_new_password(string $site, string $username, string $password): 
 
         $stmt->execute();
 
-        print_messages::printInfo("Password created!");
+        PrintMessages::printInfo("Password created!");
         unset($stmt);
         unset($db);
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 }
 

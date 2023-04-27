@@ -4,33 +4,33 @@
 <h1 class="text-center">All Your Passwords!</h1>
 
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/print_messages.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/db.php");
-include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/pwd_utils.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PrintMessages.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/Database.php");
+include_once($_SERVER['DOCUMENT_ROOT'] . "/app/utils/PwdUtils.php");
 
 if (isset($_POST['update'])) {
     $pid = $_POST['pid'];
     $site = $_POST['site'];
     $username = $_POST['username'];
-    $password = pwd_utils::encrypt_password($_POST['password']);
+    $password = PwdUtils::encryptPassword($_POST['password']);
 
-    update_password($pid, $site, $username, $password);
+    updatePassword($pid, $site, $username, $password);
 } elseif (isset($_POST['delete'])) {
     $pid = $_POST['pid'];
-    delete_password($pid);
+    deletePassword($pid);
 }
 
-load_passwords();
+loadPasswords();
 
 /**
  * Loads all of the passwords of the specific user
  * @return void
  */
-function load_passwords(): void {
+function loadPasswords(): void {
     $uid = $_SESSION['uid'];
 
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("SELECT * FROM ppm.passwords WHERE uid = :uid");
         $stmt->bindParam(":uid", $uid);
@@ -46,12 +46,12 @@ function load_passwords(): void {
             $pid = $row['pid'];
             $site = $row['site_name'];
             $username = $row['username'];
-            $password = pwd_utils::decrypt_password($row['password']);
+            $password = PwdUtils::decryptPassword($row['password']);
             $creation_date = $row['creation_date'];
-            create_password_form($pid, $site, $username, $password, $creation_date);
+            createPasswordForm($pid, $site, $username, $password, $creation_date);
         }
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 }
 
@@ -64,7 +64,7 @@ function load_passwords(): void {
  * @param string $creation_date Date the password was created or modified
  * @return void
  */
-function create_password_form(int $pid, string $site, string $username, string $password, string $creation_date): void {
+function createPasswordForm(int $pid, string $site, string $username, string $password, string $creation_date): void {
     echo '
         <div class="container mb-5">
             <form role="form" method="post" id="passwordForm" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
@@ -97,11 +97,11 @@ function create_password_form(int $pid, string $site, string $username, string $
  * @param string $password The password
  * @return void
  */
-function update_password(int $pid, string $site, string $username, string $password): void {
+function updatePassword(int $pid, string $site, string $username, string $password): void {
     $current_time = date("Y-m-d H:i:s");
 
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("UPDATE passwords SET site_name = :site, username = :user, password = :pwd, creation_date = :date WHERE uid = :uid AND pid = :pid");
         $stmt->bindParam(":uid", $_SESSION['uid']);
@@ -115,7 +115,7 @@ function update_password(int $pid, string $site, string $username, string $passw
         unset($stmt);
         unset($db);
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 }
 
@@ -124,9 +124,9 @@ function update_password(int $pid, string $site, string $username, string $passw
  * @param int $pid The password ID
  * @return void
  */
-function delete_password(int $pid): void {
+function deletePassword(int $pid): void {
     try {
-        $db = new db();
+        $db = new Database();
         $conn = $db->getConnection();
         $stmt = $conn->prepare("DELETE FROM passwords WHERE pid = :pid AND uid = :uid");
         $stmt->bindParam(":uid", $_SESSION['uid']);
@@ -136,7 +136,7 @@ function delete_password(int $pid): void {
         unset($stmt);
         unset($db);
     } catch (PDOException $e) {
-        print_messages::printError("Database Error");
+        PrintMessages::printError("Database Error");
     }
 }
 
