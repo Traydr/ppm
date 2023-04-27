@@ -20,6 +20,14 @@ function isActive($path): void {
     }
 }
 
+function isActiveReturn($path): string {
+    global $currentPath;
+    if ($currentPath === $path) {
+        return "active";
+    }
+    return "";
+}
+
 function isLoggedIn(): bool {
     return isset($_SESSION['uid']);
 }
@@ -47,14 +55,33 @@ function isLoggedIn(): bool {
                    href="/app/generator.php">Generator</a>
             </li>
             <?php if (isLoggedIn()) {
-                include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar_change_password.php");
+                $isActiveChange = isActiveReturn('/app/change_password.php');
+                echo '
+                    <li class="nav-item">
+                        <a class="nav-link ' . $isActiveChange . '" href="/app/change_password.php">Change Password</a>
+                    </li>';
             }?>
         </ul>
         <ul class="nav nav-pills navbar-right">
             <?php if (isLoggedIn()) {
-                include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar_logged_in.php");
+                $navbarUsername = $_SESSION['username'];
+                echo '
+                    <li class="nav-item">
+                        <a class="nav-link text-bg-secondary">Welcome ' . $navbarUsername . ' </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/app/logout.php">Logout</a>
+                    </li>';
             } else {
-                include_once($_SERVER['DOCUMENT_ROOT'] . "/generic/navbar_logged_out.php");
+                $isActiveRegister = isActiveReturn('/app/register.php');
+                $isActiveLogin = isActiveReturn('/app/login.php');
+                echo '
+                    <li class="nav-item">
+                        <a class="nav-link ' . $isActiveRegister . ' " href="/app/register.php">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link ' . $isActiveRegister . ' " href="/app/login.php">Login</a>
+                    </li>';
             } ?>
         </ul>
     </div>

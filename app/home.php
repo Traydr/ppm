@@ -65,27 +65,28 @@ function load_passwords(): void {
  * @return void
  */
 function create_password_form(int $pid, string $site, string $username, string $password, string $creation_date): void {
-    echo '<div class="container mb-5">
-    <form role="form" method="post" id="passwordForm" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
-        <input type="hidden" id="pid" name="pid" value="' . $pid . '">
-        <div class="input-group mb-1">
-            <span class="input-group-text">Site</span>
-            <input type="text" aria-label="Website" class="form-control" id="site" name="site"
-                   value="' . $site . '">
-            <span class="input-group-text" id="lastModified">Last Modified: ' . $creation_date . '</span>
-            <button class="btn btn-outline-secondary border-warning-subtle" type="submit" name="update">Update</button>
-            <button class="btn btn-outline-secondary border-danger-subtle" type="submit" name="delete">Delete</button>
-        </div>
-        <div class="input-group mb-1">
-            <span class="input-group-text">Username</span>
-            <input type="text" aria-label="Username" class="form-control" id="username"
-                   name="username" value="' . $username . '">
-            <span class="input-group-text">Password</span>
-            <input type="text" aria-label="password" class="form-control" id="password"
-                   name="password" value="' . $password . '">
-        </div>
-    </form>
-</div>';
+    echo '
+        <div class="container mb-5">
+            <form role="form" method="post" id="passwordForm" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
+                <input type="hidden" id="pid" name="pid" value="' . $pid . '">
+                <div class="input-group mb-1">
+                    <span class="input-group-text">Site</span>
+                    <input type="text" aria-label="Website" class="form-control" id="site" name="site"
+                           value="' . $site . '">
+                    <span class="input-group-text" id="lastModified">Last Modified: ' . $creation_date . '</span>
+                    <button class="btn btn-outline-secondary border-warning-subtle" type="submit" name="update">Update</button>
+                    <button class="btn btn-outline-secondary border-danger-subtle" type="submit" name="delete">Delete</button>
+                </div>
+                <div class="input-group mb-1">
+                    <span class="input-group-text">Username</span>
+                    <input type="text" aria-label="Username" class="form-control" id="username"
+                           name="username" value="' . $username . '">
+                    <span class="input-group-text">Password</span>
+                    <input type="text" aria-label="password" class="form-control" id="password"
+                           name="password" value="' . $password . '">
+                </div>
+            </form>
+        </div>';
 }
 
 /**
