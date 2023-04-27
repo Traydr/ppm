@@ -24,7 +24,7 @@ if (isset($_POST["submit"])) {
     }
 }
 
-function create_new_password($site, $username, $password): void {
+function create_new_password(string $site, string $username, string $password): void {
     $current_time = date("Y-m-d H:i:s");
     $encrypted_password = pwd_utils::encrypt_password($password);
     try {
