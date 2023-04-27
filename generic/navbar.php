@@ -13,14 +13,14 @@ if (!isLoggedIn()) {
     }
 }
 
-function isActive($path): void {
+function isActive(string $path): void {
     global $currentPath;
     if ($currentPath === $path) {
         print "active";
     }
 }
 
-function isActiveReturn($path): string {
+function isActiveReturn(string $path): string {
     global $currentPath;
     if ($currentPath === $path) {
         return "active";
