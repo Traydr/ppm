@@ -36,7 +36,16 @@ if (isset($_POST['submit'])) {
     print ("<h2 class='text-center'>" . generatePassword($chars, $specialChars, $numbers, $uppercase, $lowercase) . "</h2>");
 }
 
-function generatePassword($chars, $specialChars, $numbers, $uppercase, $lowercase): string {
+/**
+ * Generates a password according to the given parameters. Returns an error message if the parameters are invalid.
+ * @param int $chars A number between 1 and 128
+ * @param bool $specialChars True if special characters should be included
+ * @param bool $numbers True if numbers should be included
+ * @param bool $uppercase True if uppercase letters should be included
+ * @param bool $lowercase True if lowercase letters should be included
+ * @return string The generated password
+ */
+function generatePassword(int $chars, bool $specialChars, bool $numbers, bool $uppercase, bool $lowercase): string {
     $gen = new password_generator($chars, $numbers, $specialChars, $uppercase, $lowercase);
     try {
         return $gen->generate();
@@ -46,8 +55,6 @@ function generatePassword($chars, $specialChars, $numbers, $uppercase, $lowercas
 }
 
 ?>
-
-
     <div class="container">
         <form role="form" method="post"
               action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
