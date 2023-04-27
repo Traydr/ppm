@@ -1,19 +1,46 @@
 <?xml version="1.0"?>
 <psalm
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="https://getpsalm.org/schema/config"
-        xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
-        xmlns:xi="http://www.w3.org/2001/XInclude"
-
-        phpVersion="8.2"
-        skipChecksOnUnresolvableIncludes="true"
+    errorLevel="4"
+    resolveFromConfigFile="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="https://getpsalm.org/schema/config"
+    xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
+    phpVersion="8.2"
+    findUnusedBaselineEntry="true"
+    skipChecksOnUnresolvableIncludes="true"
+    reportMixedIssues="true"
 >
     <projectFiles>
         <directory name="app" />
         <directory name="generic" />
+        <file name="index.php" />
+        <file name="app/change_password.php" />
+        <file name="app/generator.php" />
+        <file name="app/home.php" />
+        <file name="app/login.php" />
+        <file name="app/logout.php" />
+        <file name="app/new.php" />
+        <file name="app/register.php" />
+        <file name="generic/footer.php" />
+        <file name="generic/header.php" />
+        <file name="generic/navbar.php" />
+        <file name="vendor/autoload.php" />
+        <file name="app/generator/password_generator.php" />
+        <file name="app/utils/db.php" />
+        <file name="app/utils/db_utils.php" />
+        <file name="app/utils/print_messages.php" />
+        <file name="app/utils/pwd_utils.php" />
+        <file name="vendor/composer/autoload_classmap.php" />
+        <file name="vendor/composer/autoload_files.php" />
+        <file name="vendor/composer/autoload_namespaces.php" />
+        <file name="vendor/composer/autoload_psr4.php" />
+        <file name="vendor/composer/autoload_real.php" />
+        <file name="vendor/composer/autoload_static.php" />
+        <file name="vendor/composer/ClassLoader.php" />
+        <file name="vendor/composer/installed.php" />
+        <file name="vendor/composer/InstalledVersions.php" />
+        <ignoreFiles>
+            <directory name="vendor" />
+        </ignoreFiles>
     </projectFiles>
-    <enableExtensions>
-        <extension name="pdo"/>
-        <extension name="dom"/>
-    </enableExtensions>
 </psalm>
