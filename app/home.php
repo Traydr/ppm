@@ -53,7 +53,7 @@ function load_passwords(): void {
     }
 }
 
-function create_password_form($pid, $site, $username, $password, $creation_date): void {
+function create_password_form(int $pid, string $site, string $username, string $password, string $creation_date): void {
     echo '<div class="container mb-5">
     <form role="form" method="post" id="passwordForm" action="' . htmlspecialchars($_SERVER["PHP_SELF"]) . '">
         <input type="hidden" id="pid" name="pid" value="' . $pid . '">
@@ -77,7 +77,7 @@ function create_password_form($pid, $site, $username, $password, $creation_date)
 </div>';
 }
 
-function update_password($pid, $site, $username, $password): void {
+function update_password(int $pid, string $site, string $username, string $password): void {
     $current_time = date("Y-m-d H:i:s");
 
     try {
