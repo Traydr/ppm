@@ -14,7 +14,7 @@
 - (FK, PK) UID
 - (PK) PID
 - Encrypted Password
-- Website / App name 
+- Website / App name
 - Creation date
 - Site username
 
