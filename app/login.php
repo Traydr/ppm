@@ -16,7 +16,6 @@ if (isset($_POST['submit'])) {
         $name = $_POST['username'];
         $password = $_POST['password'];
         loginUser($name, $password);
-        header("Location: /app/home.php");
     }
 }
 
@@ -69,6 +68,7 @@ function loginUser(string $username, string $password): void {
 
     unset($stmt);
     unset($db);
+    header("Location: /app/home.php");
 }
 
 ?>
