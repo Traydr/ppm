@@ -9,7 +9,7 @@
 
 - PHP 8.2.4
 - PHP Composer
-    - run `$ composer install`
+  - run `$ composer install`
 - MySQL 8.0.32
 
 ## Requirements
@@ -30,13 +30,13 @@
 
 ## Deliverables
 
-1) Program performance report (PDF) containing: 
-   1) Title page 
-   2) UML diagrams 
-   3) Images of response window(s): 
-      1) With data (Print Screens) 
-      2) Program fragments with comments 
-      3) MySql table windows 
+1) Program performance report (PDF) containing:
+   1) Title page
+   2) UML diagrams
+   3) Images of response window(s):
+      1) With data (Print Screens)
+      2) Program fragments with comments
+      3) MySql table windows
       4) Images - real-world connections (Print Screens)
 2) PHP code
 3) MySQL db export
