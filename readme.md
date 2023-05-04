@@ -12,6 +12,14 @@
   - run `$ composer install`
 - MySQL 8.0.32
 
+## Showcase
+
+<div align="center">
+    <img alt="Index" src="docs/images/ppm-index-log-in.png">
+    <img alt="Home" src="docs/images/ppm-home.png">
+    <img alt="Password Generator" src="docs/images/ppm-generator.png">
+</div>
+
 ## Requirements
 
 1) `Done` Use a MySQL database
